@@ -1,0 +1,25 @@
+{
+    "name": "madoka",
+    "displayName": "Madoka",
+    "description": "LEAVE BLANK",
+    "version": "0.0.1",
+    "engines": {
+        "vscode": "^1.64.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+    "contributes": {
+        "languages": [{
+            "id": "scheme",
+            "aliases": ["Scheme", "scheme"],
+            "extensions": [".scm"],
+            "configuration": "./language-configuration.json"
+        }],
+        "grammars": [{
+            "language": "scheme",
+            "scopeName": "source.scheme",
+            "path": "./syntaxes/scheme.tmLanguage.json"
+        }]
+    }
+}
