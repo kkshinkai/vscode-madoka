@@ -1,32 +1,35 @@
 {
-	"$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
-	"name": "Scheme",
-	"patterns": [
-		{
-			"include": "#keywords"
-		},
-		{
-			"include": "#strings"
-		}
-	],
-	"repository": {
-		"keywords": {
-			"patterns": [{
-				"name": "keyword.control.scheme",
-				"match": "\\b(if|while|for|return)\\b"
-			}]
-		},
-		"strings": {
-			"name": "string.quoted.double.scheme",
-			"begin": "\"",
-			"end": "\"",
-			"patterns": [
-				{
-					"name": "constant.character.escape.scheme",
-					"match": "\\\\."
-				}
-			]
-		}
-	},
-	"scopeName": "source.scheme"
+  "$schema": "https://raw.githubusercontent.com/martinring/tmlanguage/master/tmlanguage.json",
+  "name": "Scheme",
+  "patterns": [
+    { "include": "#comment" },
+    { "include": "#block-comment" },
+    { "include": "#datum" }
+  ],
+  "repository": {
+    "comment": {
+      "name": "comment.line.scheme",
+      "match": ";.*$"
+    },
+    "block-comment": {
+      "name": "comment.block.scheme",
+      "begin": "\\#\\|", "contentName": "comment", "end": "\\|\\#",
+      "patterns": [
+        { "include": "#block-comment", "name": "comment" }
+      ]
+    },
+    "datum": {
+      "patterns": [
+        {
+          "match": "(?<=^|[\\(\\)\\[\\]'`,&\\s])#(t|true)(?=[\\[\\s\\]\\(\\);'`]|$)",
+          "name": "constant.language.boolean.true.scheme"
+        },
+        {
+          "match": "(?<=^|[\\(\\)\\[\\]'`,&\\s])#(f|false)(?=[\\[\\s\\]\\(\\);'`]|$)",
+          "name": "constant.language.boolean.false.scheme"
+        }
+      ]
+    }
+  },
+  "scopeName": "source.scheme"
 }
